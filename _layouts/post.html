@@ -1,0 +1,27 @@
+---
+layout: default
+---
+
+<article class="post">
+  <h1 class="post-title">{{ page.title }}</h1>
+  <time datetime="{{ page.date | date_to_xmlschema }}" class="post-date">
+	{{ page.date | date: '%Y-%m-%d' }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+	{{ site.author.name }}  
+	</time>
+  {{ content }}
+</article>
+
+{% if site.related_posts != empty %}
+<aside class="related">
+  <h2>最近文章</h2>
+  <ul class="related-posts">
+    {% for post in site.related_posts limit:3 %}
+      <li>
+        <a href="{{ site.baseurl }}{{ post.url }}">
+          {{ post.title }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</aside>
+{% endif %}

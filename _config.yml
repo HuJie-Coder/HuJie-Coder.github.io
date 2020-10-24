@@ -1,0 +1,51 @@
+# Setup
+title: 小胡的北极小屋
+url: https://hujie-coder.github.io 
+paginate: 1
+baseurl: ""
+permalink: pretty
+
+# Gems
+plugins:
+  - jekyll-gist
+  - jekyll-paginate
+  - jekyll-seo-tag
+
+# Optimize Jekyll
+exclude:
+  - .editorconfig
+  - .git
+  - .jekyll-cache
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE.md
+  - README.md
+
+sass:
+  sass_dir: _sass
+  style: :compressed
+
+# Options
+
+# Google Analytics example
+ga_analytics: G-MZLY8LC2HQ
+
+# Replace this value and uncomment to enable Google Analytics tracking
+# ga_analytics: UA-000000-0
+
+# Specify the author for blog posts
+author:
+  name: Jayden
+  url: https://hujie-coder.github.io 
+  email: 15717967574@163.com
+
+# Custom vars
+version: 3.0.0
+
+# Navbar page list
+nav:
+  - title: 博客
+    url: /archive
+
+  - title: 关于 
+    url: /about

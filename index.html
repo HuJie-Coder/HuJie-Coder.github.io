@@ -1,0 +1,37 @@
+---
+layout: default
+title: Home
+---
+
+<div class="posts">
+  {% for post in paginator.posts %}
+  <article class="post">
+    <h1 class="post-title">
+      <a href="{{ post.url | relative_url }}">
+        {{ post.title }}
+      </a>
+    </h1>
+
+    <time datetime="{{ post.date | date_to_xmlschema }}" class="post-date">
+		{{ post.date | date: '%Y-%m-%d' }}
+    &nbsp; &nbsp; &nbsp;
+		{{ site.author.name }}
+		</time>
+
+    {{ post.content }}
+  </article>
+  {% endfor %}
+</div>
+
+<div class="pagination">
+  {% if paginator.next_page %}
+    <a class="pagination-item older" href="{{ paginator.next_page_path | relative_url }}">上一篇</a>
+  {% else %}
+    <span class="pagination-item older">到头了</span>
+  {% endif %}
+  {% if paginator.previous_page %}
+    <a class="pagination-item newer" href="{{ paginator.previous_page_path | prepend: relative_url }}">下一篇</a>
+  {% else %}
+    <span class="pagination-item newer">到底了</span>
+  {% endif %}
+</div>
