@@ -123,13 +123,14 @@ GROUP BY id, city
 
 ## CollapsingMergeTree 
 ```CollapsingMergeTree```的设计思路是以增加代替删除，所以会设置一个标记位置，这个标记位置记录这一行的状态，```1```表示这一行是有效数据，```-1```表示这是一行无效数据，表示这行数据需要被删除。```CollapsingMergeTree```在折叠数据的时候，遵循一定的规则
-- ```sign=1```比```sign=-1```的数据多一行，保留```sign=1```的数据
-- ```sign=1```比```sign=-1```的数据少一行，保留```sign=-1```的数据
--  ```sign=1```比```sign=-1```的数据行数一样多
-    - 如果最后一行是```sign=1```，保留第一行```sign=-1```和最后一行```sign=1```的数据
-    - 如果最后一行是```sign=-1```，都不保留
+1. ```sign=1```比```sign=-1```的数据多一行，保留```sign=1```的数据
+2. ```sign=1```比```sign=-1```的数据少一行，保留```sign=-1```的数据
+3.  ```sign=1```比```sign=-1```的数据行数一样多
+    3.1 如果最后一行是```sign=1```，保留第一行```sign=-1```和最后一行```sign=1```的数据
+    3.2 如果最后一行是```sign=-1```，都不保留
 
 ###  创建语句
+
 ```sql
 CREATE TABLE test_jayden.collpase_table(
     id String,
@@ -142,6 +143,8 @@ ORDER BY id
 ;
 ```
 值得注意的是，```CollapsingMergeTree```对数据的写入顺序有着严格要求，这种现象是```CollapsingMergeTree```的处理机制引起的，因为他要求```sign=1```和```sign=-1```的数据相邻。
+
+
 
 ## VersionedCollapsingMergeTree
 ```VersionedCollapsingMergeTree```在```CollapsingMergeTree```的基础上加入版本号，版本号会作为排序条件增加到 ```ORDER BY```末端。这种方式的好处是处理数据的时候对写入顺序没有要求，在同一个分区内，任意顺序的数据都能完成折叠操作。
