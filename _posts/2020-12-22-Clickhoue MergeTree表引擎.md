@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Clickhouse-MergeTree
+title: Clickhouse MergeTree表引擎
 ---
 # MergeTree
 ```MergeTree```系列的表引擎威力很大，但是起作用的前提是进行了合并。正常情况下，```CH``` 在一定的时间间隔内会自动进行合并，但是在有些情况下，可以进行手动合并，手动合并使用```OPTIMIZE TABLE tableName FINAL```进行合并，这种方式开销很大，生产环境慎用! ```MergeTree```系列的表引擎有一些相同的功能，这些功能适用于该系列的所有表引擎。
